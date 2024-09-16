@@ -1,28 +1,15 @@
-import React,{useState} from "react";
-import BookSummary from "./BookSummary";
-import BookDetails from "./BookDetails";
+import React from "react";
+import BookWithToggle from "./BookWithToggle";
 
 function Book({books}){
-    const [showSummary,setShowSummary]=useState(false);
-    return (
-        <>
-        {
-            books.map(
-                (book,index) =>(
-                       <div key={index}>
-                            <BookDetails title={book.title} author={book.author} year={book.year} />
-                        
-                            <button onClick={()=> setShowSummary(!showSummary)}>
-                                {showSummary ? "Hide Summary" : "Show Summary"}
-                            </button>
-                            {showSummary && <BookSummary summary={book.summary}/>}
-                        </div>
-            
-                    ))
-        }
-        </>
-    );
-
+  return (
+    <>
+    {books.map((book)=>
+            <BookWithToggle key={book.title} book={book} />
+            )
+    }
+    </>
+  );
 }
 
 export default Book;
